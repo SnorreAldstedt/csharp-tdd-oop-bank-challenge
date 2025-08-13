@@ -11,6 +11,7 @@ namespace Boolean.CSharp.Main.BankAccounts
         public Guid accountID {  get; }
         public Guid customerID { get; }
         private List<Transaction> transactions;
+        private Transaction? previousTransaction;
         public BankAccount(Guid cID) {
             accountID = new Guid();
             customerID = cID;
@@ -28,7 +29,7 @@ namespace Boolean.CSharp.Main.BankAccounts
         {
             throw new NotImplementedException();
         }
-        public void GenerateStatement(decimal amount)
+        public void GenerateStatement()
         {
             throw new NotImplementedException();
         }

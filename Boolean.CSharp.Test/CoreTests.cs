@@ -34,18 +34,49 @@ namespace Boolean.CSharp.Test
         [Test]
         public void DepositCurrentAccountTest()
         {
-            //CurrentAccount;
+            Guid cID = Guid.NewGuid();
+            CurrentAccount account = new CurrentAccount(cID);
+
+            account.Deposit(1000m);
+            decimal balance = account.GetBalance();
+
+            Assert.AreEqual(1000m, balance);
+        }
+        [Test]
+        public void DepositSavingsAccountTest()
+        {
+            Guid cID = Guid.NewGuid();
+            SavingsAccount account = new SavingsAccount(cID);
+            account.Deposit(500m);
+
+            decimal balance = account.GetBalance();
+
+            Assert.AreEqual(500m, balance);
+
         }
         [Test]
         public void WithdrawCurrentAccountTest()
         {
-            Assert.Fail();
+            Guid cID = Guid.NewGuid();
+            CurrentAccount account = new CurrentAccount(cID);
+
+            account.Withdraw(1000m);
+            decimal balance = account.GetBalance();
+
+            Assert.AreEqual(-1000m, balance);
         }
 
         [Test]
-        public void GenerateStatementTest()
+        public void WithdrawSavingsAccountTest()
         {
-            Assert.Fail();
+            Guid cID = Guid.NewGuid();
+            SavingsAccount account = new SavingsAccount(cID);
+            account.Withdraw(500m);
+
+            decimal balance = account.GetBalance();
+
+            Assert.AreEqual(-500m, balance);
+
         }
 
         [Test]
@@ -86,9 +117,26 @@ namespace Boolean.CSharp.Test
             Assert.That(balance == 0m);
         }
 
+        [Test]
+        public void GenerateStatementTest()
+        {
+            Guid cID = Guid.NewGuid();
+            CurrentAccount account = new CurrentAccount(cID);
 
- 
+            account.Deposit(1000m);
+            account.Withdraw(250m);
+            decimal balance = account.GetBalance();
 
-
+            string statement = account.GenerateStatement();
+            Assert.AreEqual(750m, balance);
+            Assert.That(
+                statement.Contains("1000") &&
+                statement.Contains("250") &&
+                statement.Contains("750") &&
+                statement.Contains("date") &&
+                statement.Contains("credit") &&
+                statement.Contains("debit") &&
+                statement.Contains("balance"));
+        }
     }
 }
