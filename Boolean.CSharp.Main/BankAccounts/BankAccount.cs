@@ -16,26 +16,41 @@ namespace Boolean.CSharp.Main.BankAccounts
             accountID = new Guid();
             customerID = cID;
             transactions = new List<Transaction>();
+            previousTransaction = null;
         }
-        private void AddTransaction(decimal transaction)
+        private void AddTransaction(Transaction transaction)
         {
-            throw new NotImplementedException();
+            previousTransaction = transaction;
+            transactions.Add(transaction);
         }
         public void Deposit(decimal amount) 
         {  
-            throw new NotImplementedException(); 
+            DateTime date = DateTime.Now;
+            string type = "deposit";
+            Transaction deposit = new Transaction(date, type, amount, previousTransaction); 
+            AddTransaction(deposit);
         }
         public void Withdraw(decimal amount)
         {
-            throw new NotImplementedException();
+            DateTime date = DateTime.Now;
+            string type = "withdraw";
+            Transaction withdraw = new Transaction(date, type, -amount, previousTransaction);
+            AddTransaction(withdraw);
         }
-        public void GenerateStatement()
+        public string GenerateStatement()
         {
             throw new NotImplementedException();
         }
         public decimal GetBalance() 
-        {  
-            throw new NotImplementedException();
+        {
+            if (previousTransaction == null)
+            {
+                return 0m;
+            }
+            else
+            {
+                return previousTransaction.CalculateBalance();
+            }
         }
     }
 }
