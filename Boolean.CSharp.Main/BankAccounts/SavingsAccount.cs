@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Boolean.CSharp.Main.BankAccount
+namespace Boolean.CSharp.Main.BankAccounts
 {
-    public class BankAccount
+    public class SavingsAccount : BankAccount
     {
+
     }
 }

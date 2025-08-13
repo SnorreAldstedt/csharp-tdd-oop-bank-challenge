@@ -21,10 +21,10 @@ I want to deposit and withdraw funds.
 ```
 
 | Class | Method/Attribute | Scenario | Output |
---------|------------------|----------|--------|
+|-------|------------------|----------|--------|
 | Bank | CreateAccount(guid customerID) | Method to create an account with a customerID | void |
 | Bank | GetAccount(guid customerID, guid bankID) | Method to get an account given a customerID and a Bankaccount | BankAccount |
-| Bank | GetMyAccounts(guid customerID) | Method that returns all accounts given a Customer | List<BankAccount> |
+| Bank | GetCustomerAccounts(guid customerID) | Method that returns all accounts given a Customer | List<BankAccount> |
 | BankAccount | Deposit(decimal amount) | Method to Deposit money into an account | void |
 | BankAccount | Withdraw(decimal amount) | Method to Withdraw money from an account | void |
-| BankAccount | GenerateBankStatement() | Method that generates a bank statement | string |
+| BankAccount | GenerateStatement() | Method that generates a bank statement | string |
