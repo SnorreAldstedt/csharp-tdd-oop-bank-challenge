@@ -13,7 +13,7 @@ namespace Boolean.CSharp.Main.BankAccounts
         private List<Transaction> transactions;
         private Transaction? previousTransaction;
         public BankAccount(Guid cID) {
-            accountID = new Guid();
+            accountID = Guid.NewGuid();
             customerID = cID;
             transactions = new List<Transaction>();
             previousTransaction = null;

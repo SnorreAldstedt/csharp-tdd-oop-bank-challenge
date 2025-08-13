@@ -76,7 +76,6 @@ namespace Boolean.CSharp.Test
             decimal balance = account.GetBalance();
 
             Assert.AreEqual(-500m, balance);
-
         }
 
         [Test]
@@ -96,13 +95,36 @@ namespace Boolean.CSharp.Test
             Assert.That(myBank.GetCustomerAccounts(cID).Count == 0);
         }
         [Test]
-        public void CreateAccountTest()
+        public void CreateCurrentAccountFromBankTest()
         {
             Bank myBank = new Bank("testBank");
             Guid cID = Guid.NewGuid();
-            myBank.CreateAccount(cID);
+            myBank.CreateCurrentAccount(cID);
             
             Assert.That(myBank.GetCustomerAccounts(cID).Count == 1);
+        }
+
+        [Test]
+        public void CreateSavingsAccountFromBankTest()
+        {
+            Bank myBank = new Bank("testBank");
+            Guid cID = Guid.NewGuid();
+            myBank.CreateSavingsAccount(cID);
+
+            Assert.That(myBank.GetCustomerAccounts(cID).Count == 1);
+        }
+        [Test]
+        public void CreateAccountsFromBankTest()
+        {
+            Bank myBank = new Bank("testBank");
+            Guid cID = Guid.NewGuid();
+            myBank.CreateSavingsAccount(cID);
+            myBank.CreateCurrentAccount(cID);
+            myBank.CreateCurrentAccount(cID);
+
+            int countCustomerAccounts = myBank.GetCustomerAccounts(cID).Count;
+            
+            Assert.AreEqual(countCustomerAccounts, 3);
         }
 
         [Test]
@@ -110,7 +132,7 @@ namespace Boolean.CSharp.Test
         {
             Bank myBank = new Bank("testBank");
             Guid cID = Guid.NewGuid();
-            myBank.CreateAccount(cID);
+            myBank.CreateCurrentAccount(cID);
             Guid accountGuid = myBank.GetCustomerAccounts(cID)[0].accountID;
             BankAccount account = myBank.GetAccount(cID, accountGuid);
             decimal balance = account.GetBalance();

@@ -18,21 +18,42 @@ namespace Boolean.CSharp.Main
             Accounts = new Dictionary<Guid, Dictionary<Guid, BankAccount>>();
         }
 
-        public void CreateAccount(Guid customerID)
+        public void CreateCurrentAccount(Guid customerID)
         {
-            throw new NotImplementedException();
+            CurrentAccount current = new CurrentAccount(customerID);
+
+            if (!Accounts.ContainsKey(customerID))
+            {
+                Accounts[customerID] = new Dictionary<Guid, BankAccount>();
+            }
+            Accounts[customerID][current.accountID] = current;
+        }
+
+        public void CreateSavingsAccount(Guid customerID)
+        {
+            SavingsAccount current = new SavingsAccount(customerID);
+            if (!Accounts.ContainsKey(customerID))
+            {
+                Accounts[customerID] = new Dictionary<Guid, BankAccount>();
+            }
+            Accounts[customerID][current.accountID] = current;
         }
 
         public BankAccount GetAccount(Guid customerID, Guid accountID)
         {
-            throw new NotImplementedException();
+            return Accounts[customerID][accountID];
         }
 
         public List<BankAccount> GetCustomerAccounts(Guid customerID)
         {
-            throw new NotImplementedException();
+            if (Accounts.ContainsKey(customerID))
+            {
+                return Accounts[customerID].Values.ToList();
+            }
+            else
+            {
+                return new List<BankAccount>();
+            }
         }
-
-
     }
 }
