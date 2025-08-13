@@ -8,13 +8,13 @@ namespace Boolean.CSharp.Main.BankAccounts
 {
     public class BankAccount
     {
-        Guid accountID {  get; }
-        Guid customerID { get; }
-        private List<decimal> transactions;
+        public Guid accountID {  get; }
+        public Guid customerID { get; }
+        private List<Transaction> transactions;
         public BankAccount(Guid cID) {
             accountID = new Guid();
             customerID = cID;
-            transactions = new List<decimal>();
+            transactions = new List<Transaction>();
         }
         private void AddTransaction(decimal transaction)
         {
@@ -30,6 +30,10 @@ namespace Boolean.CSharp.Main.BankAccounts
         }
         public void GenerateStatement(decimal amount)
         {
+            throw new NotImplementedException();
+        }
+        public decimal GetBalance() 
+        {  
             throw new NotImplementedException();
         }
     }
