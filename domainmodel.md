@@ -21,6 +21,7 @@ I want to deposit and withdraw funds.
 ```
 
 | Class | Method/Attribute | Scenario | Output |
+--------|------------------|----------|--------|
 | Bank | CreateAccount(guid customerID) | Method to create an account with a customerID | void |
 | Bank | GetAccount(guid customerID, guid bankID) | Method to get an account given a customerID and a Bankaccount | BankAccount |
 | Bank | GetMyAccounts(guid customerID) | Method that returns all accounts given a Customer | List<BankAccount> |
