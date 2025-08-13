@@ -21,7 +21,7 @@ namespace Boolean.CSharp.Test
             Guid cID = Guid.NewGuid();
             BankAccount account = new CurrentAccount(cID);
 
-            Assert.That(account.GetType() == typeof(CurrentAccount));
+            Assert.That(account is CurrentAccount);
         }
         [Test]
         public void CreateSavingsAccountTest()
@@ -29,7 +29,7 @@ namespace Boolean.CSharp.Test
             Guid cID = Guid.NewGuid();
             BankAccount account = new SavingsAccount(cID);
 
-            Assert.That(account.GetType() == typeof(SavingsAccount));
+            Assert.That(account is SavingsAccount);
         }
         [Test]
         public void DepositCurrentAccountTest()
@@ -150,6 +150,7 @@ namespace Boolean.CSharp.Test
             decimal balance = account.GetBalance();
 
             string statement = account.GenerateStatement();
+            Console.WriteLine(statement);
             Assert.AreEqual(750m, balance);
             Assert.That(
                 statement.Contains("1000") &&
