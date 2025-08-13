@@ -15,10 +15,36 @@ namespace Boolean.CSharp.Test
         }
 
         [Test]
-        public void TestQuestion1()
+        public void CreateAccountTest()
         {
-
+            Assert.Fail();
         }
+
+        [Test]
+        public void WithdrawTest()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        public void DepositTest()
+        {
+            Assert.Fail();
+        }
+
+
+        [Test]
+        public void CreateSavingsAccountTest()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        public void GenerateStatementTest()
+        {
+            Assert.Fail();
+        }
+
 
     }
 }
