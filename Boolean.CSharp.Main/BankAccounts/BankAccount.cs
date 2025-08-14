@@ -69,7 +69,7 @@ namespace Boolean.CSharp.Main.BankAccounts
             string creditStr = "credit";
             string debitStr = "debit";
             string balanceStr = "balance";
-            appendStatementLine(statementBuilder, dateStr, creditStr, debitStr, balanceStr);
+            appendStatementLine(statementBuilder, dateStr, creditStr, debitStr, balanceStr, cellWidth);
             while (previousTransaction != null)
             {
                 var tStrs = getAllStrings(previousTransaction);
@@ -88,6 +88,11 @@ namespace Boolean.CSharp.Main.BankAccounts
             {
                 return previousTransaction.CalculateBalance();
             }
+        }
+        public List<Transaction> GetPendingTransactions()
+        {
+            return new List<Transaction>();
+            //throw new NotImplementedException();
         }
     }
 }

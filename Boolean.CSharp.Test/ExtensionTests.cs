@@ -1,4 +1,5 @@
 ﻿using Boolean.CSharp.Main;
+using Boolean.CSharp.Main.BankAccounts;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -17,14 +18,18 @@ namespace Boolean.CSharp.Test
             _extension = new Extension();
         }
         [Test]
-        private void TestQuestion1()
+        public void PendingStatusTest()
         {
+            Guid cID = Guid.NewGuid();
+            CurrentAccount account = new CurrentAccount(cID);
 
-        }
-        [Test]
-        private void TestQuestion2()
-        {
+            account.Withdraw(1000m);
+            decimal balance = account.GetBalance();
 
+            List<Transaction> pending =account.GetPendingTransactions();
+
+            Assert.AreEqual(-1000m, balance);
+            Assert.That(pending.Count == 1);
         }
     }
 }

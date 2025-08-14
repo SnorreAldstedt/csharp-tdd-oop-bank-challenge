@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace Boolean.CSharp.Main.BankAccounts
 {
+    public enum TransactionStatus {Approved, Declined, Pending}
     public class Transaction
     {
         public DateTime Date;
         public string TransactionType;
         public decimal Amount;
         public Transaction? previousTransaction;
+        public TransactionStatus status;
 
         public Transaction(DateTime date, string type, decimal amount, Transaction? previous=null)
         {
@@ -19,6 +21,7 @@ namespace Boolean.CSharp.Main.BankAccounts
             TransactionType = type;
             Amount = amount;
             previousTransaction = previous;
+            status = (TransactionType == "withdraw" && (Amount+CalculateBalance() < 0))? TransactionStatus.Pending : TransactionStatus.Approved;
         }
         public decimal CalculateBalance()
         {
